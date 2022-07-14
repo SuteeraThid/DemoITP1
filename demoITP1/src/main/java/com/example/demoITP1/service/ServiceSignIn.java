@@ -38,7 +38,7 @@ public class ServiceSignIn{
     }
     //ต้องใช้ constructor นี้ต่อในหน้า controller
     public ResponseSignIn signIn(RequestSignIn req){
-        Optional<ResponseSignIn> response = repositoryUserAuthen.findAll(req.getUserEmail(), req.getUserPassword());
+        Optional<ResponseSignIn> response = repositoryUserAuthen.findByUserEmailAndUserPassword(req.getUserEmail(), req.getUserPassword());
         if (response.isPresent()){
             List<MenuParentList> menuParent = null;             // น่าจะผิดตรง null
             if (menuParent.size()>0){

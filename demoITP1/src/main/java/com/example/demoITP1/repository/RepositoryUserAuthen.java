@@ -9,8 +9,8 @@ import java.util.Optional;
 
 @Repository
 public interface RepositoryUserAuthen extends JpaRepository<UserAuTable,Integer> {
-    Optional<UserAuTable> findByUserSignIn(String userSignin);
-    Optional<ResponseSignIn> findAll(String userEmail, String UserPassword);
+//    Optional<UserAuTable> findByUserSignIn(String userSignin);
+    Optional<ResponseSignIn> findByUserEmailAndUserPassword(String userEmail, String UserPassword);
 
 }
 
