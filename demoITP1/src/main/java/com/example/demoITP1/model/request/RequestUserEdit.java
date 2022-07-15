@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RequestUserEdit extends RequestCommon{
     @JsonProperty("userID")
-    private int userID;
+    private Integer userID;
     @JsonProperty("userName")
     private String userName;
     @JsonProperty("userEmail")
@@ -14,11 +14,9 @@ public class RequestUserEdit extends RequestCommon{
     @JsonProperty("userImage")
     private String userImage;
 
-    public int getUserID() {
-        return userID;
-    }
+    public Integer getUserID() {return userID;}
 
-    public void setUserID(int userID) {
+    public void setUserID(Integer userID) {
         this.userID = userID;
     }
 

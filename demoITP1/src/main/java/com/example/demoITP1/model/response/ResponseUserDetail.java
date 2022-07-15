@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ResponseUserDetail extends ResponseCommon{
     @JsonProperty("userID")
-    private String userID;
+    private int userID;
     @JsonProperty("userName")
     private String userName;
     @JsonProperty("userName")
@@ -14,7 +14,7 @@ public class ResponseUserDetail extends ResponseCommon{
     @JsonProperty("userImage")
     private String userImage;
 
-    public String getUserID() {
+    public int getUserID() {
         return userID;
     }
 
