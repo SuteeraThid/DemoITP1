@@ -10,6 +10,7 @@ import java.util.Optional;
 @Repository
 public interface RepositoryUserAuthen extends JpaRepository<UserAuTable,Integer> {
     Optional<ResponseSignIn> findByUserEmailAndUserPassword(String userEmail, String UserPassword);
+    Optional<UserAuTable> findByUserID(String userID);  // ใช้กับ ServiceUserAuthen
 
 }
 
