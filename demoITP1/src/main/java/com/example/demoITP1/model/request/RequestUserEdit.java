@@ -1,20 +1,20 @@
-package com.example.demoITP1.model.response;
+package com.example.demoITP1.model.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ResponseUserDetail extends ResponseCommon{
+public class RequestUserEdit extends RequestCommon{
     @JsonProperty("userID")
-    private String userID;
+    private int userID;
     @JsonProperty("userName")
     private String userName;
-    @JsonProperty("userName")
+    @JsonProperty("userEmail")
     private String userEmail;
     @JsonProperty("userPassword")
     private String userPassword;
     @JsonProperty("userImage")
     private String userImage;
 
-    public String getUserID() {
+    public int getUserID() {
         return userID;
     }
 
@@ -56,13 +56,12 @@ public class ResponseUserDetail extends ResponseCommon{
 
     @Override
     public String toString() {
-        return "ResponseUserDetail{" +
-                "ResponseCommon{" +
-                "responseCode='" + getResponseCode() + '\'' +
-                ", responseStatus='" + getResponseStatus() + '\'' +
-                ", responseMessage='" + getResponseMessage() + '\'' +
-                ", serverDateTime=" + getServerDateTime() +
-                ", sessionRefCode='" + getSessionRefCode()+ '\'' +
+        return "RequestUserEdit{" +
+                "RequestCommon{" +
+                "userAgent='" + getUserAgent() + '\'' +
+                ", sessionID='" + getSessionID() + '\'' +
+                ", actionBy='" + getActionBy() + '\'' +
+                ", sessionRefCode='" + getSessionRefCode() + '\'' +
                 '}'+
                 "userID='" + userID + '\'' +
                 ", userName='" + userName + '\'' +

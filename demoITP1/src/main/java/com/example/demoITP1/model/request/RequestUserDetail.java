@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RequestUserDetail extends RequestCommon{
     @JsonProperty("userID")
-    private String userId;
+    private Integer userId;
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -23,7 +24,7 @@ public class RequestUserDetail extends RequestCommon{
                 ", actionBy='" + getActionBy() + '\'' +
                 ", sessionRefCode='" + getSessionRefCode() + '\'' +
                 '}'+
-                "userId='" + userId + '\'' +
+                "userId=" + userId +
                 '}';
     }
 }

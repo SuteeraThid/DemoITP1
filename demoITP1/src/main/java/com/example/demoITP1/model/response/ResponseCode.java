@@ -9,7 +9,8 @@ public enum ResponseCode {
     SESSIONID_IS_EMPTY("cm0103", "FAIL"),
     ACTIONBY_IS_EMPTY("cm0106", "FAIL"),
     SESSIONREFCODE_IS_EMPTY("cm0107", "FAIL"),
-    UNKNOWN_ERROR("999", "FAIL");
+    UNKNOWN_ERROR("999", "FAIL"),
+    USR0404("usr0404","FAIL");
     private final String errCode;
     private final String errStatus;
 
