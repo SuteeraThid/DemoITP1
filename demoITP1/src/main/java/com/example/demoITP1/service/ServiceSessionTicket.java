@@ -10,12 +10,13 @@ import com.example.demoITP1.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
-
+@Service
 public class ServiceSessionTicket {
     private static final Logger logger = LoggerFactory.getLogger(ServiceSignIn.class);
     private RepositorySessionTicket repositorySessionTicket;
