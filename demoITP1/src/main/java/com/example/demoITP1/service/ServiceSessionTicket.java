@@ -5,19 +5,23 @@ import com.example.demoITP1.model.request.RequestCommon;
 import com.example.demoITP1.model.response.ResponseCode;
 import com.example.demoITP1.model.table.SessionTicTable;
 import com.example.demoITP1.repository.RepositorySessionTicket;
+import com.example.demoITP1.utils.CommonData;
 import com.example.demoITP1.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 public class ServiceSessionTicket {
     private static final Logger logger = LoggerFactory.getLogger(ServiceSignIn.class);
     private RepositorySessionTicket repositorySessionTicket;
 
-//    @Autowired
-//    private SystemConfigService systemConfigService;
+    @Autowired
+    private ServiceSystemConfig serviceSystemConfig;
 
     // Constructor ของตัวเองเผื่อไว้ใช้ใน class อื่น
     @Autowired
@@ -40,8 +44,25 @@ public class ServiceSessionTicket {
             return ResponseCode.ACTIONBY_IS_EMPTY;
         } else if (StringUtils.isNullOREmpty(req.getSessionRefCode())) {
             return ResponseCode.SESSIONREFCODE_IS_EMPTY;
+        } else {
+            Optional<SessionTicTable> sessionTicket = repositorySessionTicket.findById(req.getSessionID());
+            if (sessionTicket.isPresent()){
+                if(sessionTicket.get().getSessionExpire().before(new Date())){
+                    return ResponseCode.SESSIONID_EXPIRE;
+                } else {
+                    int apiTimeOut = Integer.parseInt(serviceSystemConfig.retrieveSystemConfig(CommonData.CONTEXT_DATA_WEB, CommonData.CONTEXT_NAME_API_TIME_OUT));
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.add(Calendar.SECOND, apiTimeOut);
+                    Date expDate = calendar.getTime();
+                    sessionTicket.get().setSessionExpire(expDate);
+                    repositorySessionTicket.save(sessionTicket.get());
+                    return null;
+                }
+            }else {
+                return ResponseCode.SESSIONID_NOT_FOUND;
+            }
         }
-        return null;
+
     }
     public void deleteSession(String sessionID){repositorySessionTicket.deleteById(sessionID);
     }
@@ -50,26 +71,25 @@ public class ServiceSessionTicket {
         return sessionTicket.isPresent();
     }
 
-    /*มีอีก 1 method ถูกเรียกใช้ 1 usage แต่ถูกเรียกเอาไปใช้ในส่วนของ permission เลยไม่แน่ใจว่าต้องเขียนด้วยไหม
-    ชื่อ method คือ generateSessionTicket*/
-//    public String generateSessionTicket(String userId){
-//        String uniqueID = UUID.randomUUID().toString();
-//        while (isDuplicateSessionId(uniqueID)) {
-//            uniqueID = UUID.randomUUID().toString();
-//        }
-//        int apiTimeOut = Integer.parseInt(systemConfigService.retrieveSystemConfig(CommonData.CONTEXT_DATA_WEB,CommonData.CONTEXT_NAME_API_TIME_OUT));
-//        Calendar calendar = Calendar.getInstance();
-//        Date sysDate = calendar.getTime();
-//        calendar.add(Calendar.SECOND, apiTimeOut);
-//        Date expDate = calendar.getTime();
-//        SessionTicTable sessionTicket = new SessionTicTable();
-//        sessionTicket.setSessionID(uniqueID);
-//        sessionTicket.setClientTicket("web");
-//        sessionTicket.setUserID(userId);
-//        sessionTicket.setSessionStart(sysDate);
-//        sessionTicket.setSessionExpire(expDate);
-//        repositorySessionTicket.save(sessionTicket);
-//        return uniqueID;
-//    }
+    //method เอาไส้สร้าง SessionTicket
+    public String generateSessionTicket(String userId){
+        String uniqueID = UUID.randomUUID().toString();
+        while (isDuplicateSessionId(uniqueID)) {
+            uniqueID = UUID.randomUUID().toString();
+        }
+        int apiTimeOut = Integer.parseInt(serviceSystemConfig.retrieveSystemConfig(CommonData.CONTEXT_DATA_WEB, CommonData.CONTEXT_NAME_API_TIME_OUT));
+        Calendar calendar = Calendar.getInstance();
+        Date sysDate = calendar.getTime();
+        calendar.add(Calendar.SECOND, apiTimeOut);
+        Date expDate = calendar.getTime();
+        SessionTicTable sessionTicket = new SessionTicTable();
+        sessionTicket.setSessionID(uniqueID);
+        sessionTicket.setClientTicket("web");
+        sessionTicket.setUserID(userId);
+        sessionTicket.setSessionStart(sysDate);
+        sessionTicket.setSessionExpire(expDate);
+        repositorySessionTicket.save(sessionTicket);
+        return uniqueID;
+    }
 }
 

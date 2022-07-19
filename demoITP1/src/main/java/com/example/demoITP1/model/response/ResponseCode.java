@@ -9,6 +9,8 @@ public enum ResponseCode {
     SESSIONID_IS_EMPTY("cm0103", "FAIL"),
     ACTIONBY_IS_EMPTY("cm0106", "FAIL"),
     SESSIONREFCODE_IS_EMPTY("cm0107", "FAIL"),
+    SESSIONID_NOT_FOUND("cm0104", "FAIL"),
+    SESSIONID_EXPIRE("cm0105", "FAIL"),
     UNKNOWN_ERROR("999", "FAIL"),
     USR0201("usr0201","FAIL"),
     USR0401("usr0401","FAIL"),

@@ -51,7 +51,7 @@ public class ServiceSignIn{
                 }
             }
             //Optional<UserAuTable> authen = repositoryUserAuthen.findByUserSignIn(req.getUserEmail());
-            String uniqueID = "";//serviceSessionTicket.generateSessionTicket(req.getUserEmail());
+            String uniqueID = serviceSessionTicket.generateSessionTicket(req.getUserEmail());
             response.get().setSessionID(uniqueID);
             response.get().setError(ResponseCode.SUCCESS_WEB);
             return response.get();
