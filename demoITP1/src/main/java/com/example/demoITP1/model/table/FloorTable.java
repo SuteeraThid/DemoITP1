@@ -11,7 +11,9 @@ public class FloorTable {
     @Id
     @Column(name = "floor_id")
     private String floorID;
+    private String floorName;
     @Column(name = "floor_picture")
     private String floorPicture;
+    
 
 }

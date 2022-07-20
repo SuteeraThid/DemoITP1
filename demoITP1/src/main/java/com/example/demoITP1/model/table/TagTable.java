@@ -17,8 +17,6 @@ public class TagTable {
     private String tagID;
     @Column(name = "tag_name_label")
     private String tagNameLabel;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss",timezone = "GMT+7")
     @Column(name = "tag_date_created")
     private LocalDateTime tagDateCreated;
     @Column(name = "tag_profile_image")

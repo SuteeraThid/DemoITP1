@@ -41,6 +41,7 @@ public class ServiceSignIn{
         Optional<ResponseSignIn> response = repositoryUserAuthen.findByUserEmailAndUserPassword(req.getUserEmail(), req.getUserPassword());
         if (response.isPresent()){
             List<MenuParentList> menuParent = null;             // น่าจะผิดตรง null
+
             if (menuParent.size()>0){
                 response.get().setMenuParentList(menuParent);
                 for (int i=0;i<menuParent.size();i++){
@@ -55,6 +56,7 @@ public class ServiceSignIn{
             response.get().setSessionID(uniqueID);
             response.get().setError(ResponseCode.SUCCESS_WEB);
             return response.get();
+
         }
         // ถ้า " if (response.isPresent())" เป็นค่าว่าง ก็คือไม่มีคนใส่ข้อมูลมา จะทำอันนี้
         ResponseSignIn resError = new ResponseSignIn();     // ตัวแปรใหม่ resError
