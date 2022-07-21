@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
 
 public class TagList {
@@ -42,7 +41,7 @@ public class TagList {
 
 
     //Constructure for Monitor and  History
-    public TagList(String tagID, String tagNameLable, String tagProfileImage, Integer tagPointX, Integer tagPointY, Integer tagFloorQuantity) {
+    public TagList(String tagID, String tagNameLable) {
         this.tagID = tagID;
         this.tagNameLable = tagNameLable;
         this.tagProfileImage = tagProfileImage;

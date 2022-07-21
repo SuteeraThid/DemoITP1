@@ -1,16 +1,27 @@
 package com.example.demoITP1.model.response;
 
 import com.example.demoITP1.model.list.FloorList;
+import com.example.demoITP1.model.list.FloorListList;
 import com.example.demoITP1.model.list.TagList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
 public class ResponseTagMonitor extends ResponseCommon {
+    @JsonProperty("rcImg")
+    private String rcImg;
     @JsonProperty("tagList")
     private List<TagList> tagList;
-    @JsonProperty("floorList")
-    private List<FloorList> floorList;
+    @JsonProperty("floorListList")
+    private List<FloorListList> floorListList;
+
+    public String getRcImg() {
+        return rcImg;
+    }
+
+    public void setRcImg(String rcImg) {
+        this.rcImg = rcImg;
+    }
 
     public List<TagList> getTagList() {
         return tagList;
@@ -20,12 +31,12 @@ public class ResponseTagMonitor extends ResponseCommon {
         this.tagList = tagList;
     }
 
-    public List<FloorList> getFloorList() {
-        return floorList;
+    public List<FloorListList> getFloorListList() {
+        return floorListList;
     }
 
-    public void setFloorList(List<FloorList> floorList) {
-        this.floorList = floorList;
+    public void setFloorListList(List<FloorListList> floorListList) {
+        this.floorListList = floorListList;
     }
 
     @Override
@@ -38,8 +49,9 @@ public class ResponseTagMonitor extends ResponseCommon {
                 ", serverDateTime=" + getServerDateTime() +
                 ", sessionRefCode='" + getSessionRefCode()+ '\'' +
                 '}'+
-                "tagList=" + tagList +
-                ", floorList=" + floorList +
+                "rcImg='" + rcImg + '\'' +
+                ", tagList=" + tagList +
+                ", floorListList=" + floorListList +
                 '}';
     }
 }
