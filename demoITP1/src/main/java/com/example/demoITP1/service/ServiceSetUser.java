@@ -34,14 +34,14 @@ public class ServiceSetUser {
         ResponseUserDetail response = new ResponseUserDetail();
         Optional<UserTable> userInfo = repositoryUser.findById(req.getUserId());
         if(userInfo.isPresent()){   // ถ้ามีค่า
-            response.setUserID(userInfo.get().getUserID()); // response แสดงค่าออกเป็น UserID ที่มาจาก UserTable
+            response.setUserID(userInfo.get().getUserID());         // response แสดงค่าออกเป็น UserID ที่มาจาก UserTable
             response.setUserName(userInfo.get().getUserName());
             response.setUserEmail(userInfo.get().getUserEmail());
             response.setUserPassword(userInfo.get().getUserPassword());
             response.setUserImage(userInfo.get().getUserImage());
 
         } else {
-            response.setError(ResponseCode.SUCCESS_WEB);    //ถ้าไม่มีค่า info จะแสดงอยู่ที่หน้าเว็ปเหมือนเดิม
+            response.setError(ResponseCode.SUCCESS_WEB);            //ถ้าไม่มีค่า info จะแสดงอยู่ที่หน้าเว็ปเหมือนเดิม
         }
         return response;    // ลองเช็คการวาง return อีกที
     }

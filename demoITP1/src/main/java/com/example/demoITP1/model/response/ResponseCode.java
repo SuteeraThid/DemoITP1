@@ -11,6 +11,7 @@ public enum ResponseCode {
     SESSIONREFCODE_IS_EMPTY("cm0107", "FAIL"),
     SESSIONID_NOT_FOUND("cm0104", "FAIL"),
     SESSIONID_EXPIRE("cm0105", "FAIL"),
+    FLOORNAME_IS_EMPTY("cm1011", "FAIL"),
     UNKNOWN_ERROR("999", "FAIL"),
     USR0201("usr0201","FAIL"),
     USR0401("usr0401","FAIL"),
