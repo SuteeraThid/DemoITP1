@@ -59,11 +59,14 @@ public class ServiceTag {
 
         ResponseTagMonitor response = new ResponseTagMonitor();
 
-        response.setTagList(new ArrayList<TagList>());              // เลือก List ตามตำแหน่ง array
+        // เลือก List ตามตำแหน่ง array
+        response.setTagList(new ArrayList<TagList>());
 
+        // เรียกtagมาดู?
         List<TagTable> tgList = repositoryTag.findByLastLocationBuildingAndLastLocationFloorAndLastSeenBetweenAndFinishDatetimeIsNullOrderByLastReceptorIdAscLastSeenDesc(req.getBuildingCode(),req.getFloorCode(),stDate,enDate,pageable);
 
-        response.setFloorListList(receptorLocationRepository.findAllReceptorByBuildingIdAndFloorId(req.getBuildingCode(),req.getFloorCode()));      // ต้องหา floor แหละ แต่ถ้าไม่ได้ใช้ receptor(anchor) หาจะต้องเป็นอะไร ??
+        // ต้องหา floor แหละ แต่ถ้าไม่ได้ใช้ receptor(anchor) หาจะต้องเป็นอะไร ??
+        response.setFloorListList(receptorLocationRepository.findAllReceptorByBuildingIdAndFloorId(req.getBuildingCode(),req.getFloorCode()));
 
         if(response.getFloorListList().size()>0){
             response.setRcImg(ServiceImage.getImageURL(response.getFloorList().get(0).getRcImg()));
